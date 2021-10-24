@@ -40,7 +40,7 @@ public class DatabaseAccess extends SQLiteOpenHelper {
     }
 
     // Adds a user to the table, type is either "students" or "admins", returns true or false based on it's success
-    public boolean addUser(String name, String email, String password, String type) {
+    public long addUser(String name, String email, String password, String type) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -49,15 +49,37 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("email", email);
         cv.put("password", password);
 
-        long success = db.insert(type, null, cv);
-
-        if (success == -1) {
+        String[] arguments = {email};
+        Cursor student_ids;
+        Cursor admin_ids;
+        try {
+            student_ids = db.rawQuery("SELECT id FROM students WHERE email = ?", arguments, null);
+            admin_ids = db.rawQuery("SELECT id FROM admins WHERE email = ?", arguments, null);
+        } catch (Exception e) {
             db.close();
-            return false;
+            return -1;
         }
 
+        if (!student_ids.moveToFirst() && !admin_ids.moveToFirst()) {
+            long success;
+            try {
+                success = db.insert(type, null, cv);
+            } catch (Exception e) {
+                student_ids.close();
+                admin_ids.close();
+                db.close();
+                return -1;
+            }
+            student_ids.close();
+            admin_ids.close();
+            db.close();
+            return success;
+        }
+
+        student_ids.close();
+        admin_ids.close();
         db.close();
-        return true;
+        return -2;
 
     }
 
@@ -73,7 +95,12 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("time", time);
         cv.put("volunteers", volunteers);
 
-        long success = db.insert("events", null, cv);
+        long success;
+        try {
+            success = db.insert("events", null, cv);
+        } catch (Exception e) {
+            success = -1;
+        }
 
         if (success == -1) {
             db.close();
@@ -157,7 +184,12 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("user_id", user_id);
         cv.put("event_id", event_id);
 
-        long success = db.insert("registered", null, cv);
+        long success;
+        try {
+            success = db.insert("registered", null, cv);
+        } catch (Exception e) {
+            success = -1;
+        }
 
         if (success == -1) {
             db.close();
