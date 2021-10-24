@@ -37,7 +37,5 @@ public class AddEvent extends AppCompatActivity {
                 Toast.makeText(AddEvent.this, String.valueOf(message), Toast.LENGTH_SHORT).show();
             }
         });
-
+      }
     }
-
-}
