@@ -18,7 +18,6 @@ public class AddEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_event);
 
-
         submit = (Button) findViewById(R.id.eventSubmit);
         title = (EditText) findViewById(R.id.eventTitle);
         description = (EditText) findViewById(R.id.eventDescription);
@@ -38,7 +37,5 @@ public class AddEvent extends AppCompatActivity {
                 Toast.makeText(AddEvent.this, String.valueOf(message), Toast.LENGTH_SHORT).show();
             }
         });
-
+      }
     }
-}
-

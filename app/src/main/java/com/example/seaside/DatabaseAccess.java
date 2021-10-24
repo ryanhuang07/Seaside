@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DatabaseAccess extends SQLiteOpenHelper {
 
     public DatabaseAccess(@Nullable Context context) {
@@ -119,18 +121,31 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
     }
 
-    // TODO
-    public void loadEvents() {
+    // Gets the id of each event and returns it
+    public java.util.ArrayList<Integer> loadEvents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        int failed = 0;
-
+        Cursor events;
         try {
-            // db.rawQuery("SELECT id FROM events WHERE ", null, null);
+            events = db.rawQuery("SELECT id FROM events", null, null);
         } catch (Exception e) {
-            failed = 1;
+            events = null;
         }
+
+        java.util.ArrayList<Integer> ids = new java.util.ArrayList<Integer>();
+        do {
+            ids.add(events.getInt(0));
+        } while (events.moveToNext());
+
+        if (ids.isEmpty()) {
+            ids.add(-1);
+        }
+
+        events.close();
+        db.close();
+        return ids;
+
     }
 
     // Registers a student for an event, returns true or false based on success
@@ -151,6 +166,29 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
         db.close();
         return true;
+
+    }
+
+    // Returns the title, description, location, time, # of volunteers, and # of registered users, returns a string array of length 1 if failed, else returns string array of length 6
+    public String[] eventInfo(int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] arguments = {Integer.toString(id)};
+
+        Cursor information, registered;
+        try {
+            information = db.rawQuery("SELECT title, description, location, time, volunteers FROM events WHERE id = ?", arguments, null);
+            registered = db.rawQuery("SELECT COUNT(*) FROM registered WHERE event_id = ?", arguments, null);
+        } catch(Exception e) {
+            return arguments;
+        }
+
+        if (information.moveToFirst() && registered.moveToFirst()) {
+            String[] info = {information.getString(0), information.getString(1), information.getString(2), information.getString(3), information.getString(4), Integer.toString(registered.getInt(0))};
+            return info;
+        }
+
+        return arguments;
 
     }
 }
