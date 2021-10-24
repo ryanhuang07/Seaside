@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DatabaseAccess extends SQLiteOpenHelper {
 
     public DatabaseAccess(@Nullable Context context) {
@@ -38,7 +40,7 @@ public class DatabaseAccess extends SQLiteOpenHelper {
     }
 
     // Adds a user to the table, type is either "students" or "admins", returns true or false based on it's success
-    public boolean addUser(String name, String email, String password, String type) {
+    public long addUser(String name, String email, String password, String type) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -47,15 +49,37 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("email", email);
         cv.put("password", password);
 
-        long success = db.insert(type, null, cv);
-
-        if (success == -1) {
+        String[] arguments = {email};
+        Cursor student_ids;
+        Cursor admin_ids;
+        try {
+            student_ids = db.rawQuery("SELECT id FROM students WHERE email = ?", arguments, null);
+            admin_ids = db.rawQuery("SELECT id FROM admins WHERE email = ?", arguments, null);
+        } catch (Exception e) {
             db.close();
-            return false;
+            return -1;
         }
 
+        if (!student_ids.moveToFirst() && !admin_ids.moveToFirst()) {
+            long success;
+            try {
+                success = db.insert(type, null, cv);
+            } catch (Exception e) {
+                student_ids.close();
+                admin_ids.close();
+                db.close();
+                return -1;
+            }
+            student_ids.close();
+            admin_ids.close();
+            db.close();
+            return success;
+        }
+
+        student_ids.close();
+        admin_ids.close();
         db.close();
-        return true;
+        return -2;
 
     }
 
@@ -71,7 +95,12 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("time", time);
         cv.put("volunteers", volunteers);
 
-        long success = db.insert("events", null, cv);
+        long success;
+        try {
+            success = db.insert("events", null, cv);
+        } catch (Exception e) {
+            success = -1;
+        }
 
         if (success == -1) {
             db.close();
@@ -119,18 +148,31 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
     }
 
-    // TODO
-    public void loadEvents() {
+    // Gets the id of each event and returns it
+    public java.util.ArrayList<Integer> loadEvents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        int failed = 0;
-
+        Cursor events;
         try {
-            // db.rawQuery("SELECT id FROM events WHERE ", null, null);
+            events = db.rawQuery("SELECT id FROM events", null, null);
         } catch (Exception e) {
-            failed = 1;
+            events = null;
         }
+
+        java.util.ArrayList<Integer> ids = new java.util.ArrayList<Integer>();
+        do {
+            ids.add(events.getInt(0));
+        } while (events.moveToNext());
+
+        if (ids.isEmpty()) {
+            ids.add(-1);
+        }
+
+        events.close();
+        db.close();
+        return ids;
+
     }
 
     // Registers a student for an event, returns true or false based on success
@@ -142,7 +184,12 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         cv.put("user_id", user_id);
         cv.put("event_id", event_id);
 
-        long success = db.insert("registered", null, cv);
+        long success;
+        try {
+            success = db.insert("registered", null, cv);
+        } catch (Exception e) {
+            success = -1;
+        }
 
         if (success == -1) {
             db.close();
@@ -151,6 +198,29 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
         db.close();
         return true;
+
+    }
+
+    // Returns the title, description, location, time, # of volunteers, and # of registered users, returns a string array of length 1 if failed, else returns string array of length 6
+    public String[] eventInfo(int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] arguments = {Integer.toString(id)};
+
+        Cursor information, registered;
+        try {
+            information = db.rawQuery("SELECT title, description, location, time, volunteers FROM events WHERE id = ?", arguments, null);
+            registered = db.rawQuery("SELECT COUNT(*) FROM registered WHERE event_id = ?", arguments, null);
+        } catch(Exception e) {
+            return arguments;
+        }
+
+        if (information.moveToFirst() && registered.moveToFirst()) {
+            String[] info = {information.getString(0), information.getString(1), information.getString(2), information.getString(3), information.getString(4), Integer.toString(registered.getInt(0))};
+            return info;
+        }
+
+        return arguments;
 
     }
 }
