@@ -44,7 +44,29 @@
         android:textIsSelectable="false"
         android:textSize="45dp" />
 
-
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_above="@+id/editText1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginBottom="20dp"
+        android:background="#D5232323"
+        android:fontFamily="@font/montserrat"
+        android:hint="Email"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editText1"
@@ -68,42 +90,6 @@
         android:textColorHint="#FFFFFF"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_above="@+id/editText2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="430dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginBottom="20dp"
-        android:background="#D5232323"
-        android:fontFamily="@font/montserrat"
-        android:hint="Email"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="145dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginRight="-238dp"
-        android:layout_marginBottom="63dp"
-        android:fontFamily="@font/montserrat"
-        android:text="login" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="145dp"
@@ -116,5 +102,17 @@
         android:fontFamily="@font/montserrat"
         android:text="Sign Up"
         app:iconTint="#000000" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="145dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginRight="-238dp"
+        android:layout_marginBottom="63dp"
+        android:fontFamily="@font/montserrat"
+        android:text="login" />
 
 </RelativeLayout>
