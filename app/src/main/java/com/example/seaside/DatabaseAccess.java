@@ -211,8 +211,8 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
     }
 
-    // Returns the title, description, location, time, # of volunteers, and # of registered users, returns a string array of length 1 if failed, else returns string array of length 6
-    public String[] eventInfo(int id) {
+    // Returns the title, description, location, time, # of volunteers, and # of registered users, returns null if failed
+    public EventInfo eventInfo(int id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
         String[] arguments = {Integer.toString(id)};
@@ -222,15 +222,36 @@ public class DatabaseAccess extends SQLiteOpenHelper {
             information = db.rawQuery("SELECT title, description, location, time, volunteers FROM events WHERE id = ?", arguments, null);
             registered = db.rawQuery("SELECT COUNT(*) FROM registered WHERE event_id = ?", arguments, null);
         } catch(Exception e) {
-            return arguments;
+            return null;
         }
 
         if (information.moveToFirst() && registered.moveToFirst() && information.getString(0).compareTo("0") != 0) {
-            String[] info = {information.getString(0), information.getString(1), information.getString(2), information.getString(3), information.getString(4), Integer.toString(registered.getInt(0))};
+            EventInfo info = null;
+            String[] when = information.getString(3).split("&");
+
+            info.title = information.getString(0);
+            info.description = information.getString(1);
+            info.location = information.getString(2);
+            info.time = when[0];
+            info.date = when[1];
+            info.volunteers = information.getInt(4);
+            info.registered = registered.getInt(0);
             return info;
         }
 
-        return arguments;
+        return null;
+
+    }
+
+    class EventInfo {
+
+        String title;
+        String description;
+        String location;
+        String time;
+        String date;
+        int volunteers;
+        int registered;
 
     }
 }
