@@ -23,6 +23,7 @@ public class SecondActivity extends AppCompatActivity {
 
         Button bAddEvent = (Button)findViewById(R.id.buttonAddEvent);
 
+
         DatabaseAccess controller = new DatabaseAccess(SecondActivity.this);
         ArrayList<Integer> ids = controller.loadEvents();
 
@@ -54,6 +55,7 @@ public class SecondActivity extends AppCompatActivity {
             }
         }
 
+
         bAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,5 +64,4 @@ public class SecondActivity extends AppCompatActivity {
         });
 
     }
-
 }

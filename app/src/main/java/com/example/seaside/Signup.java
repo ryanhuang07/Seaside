@@ -1,5 +1,6 @@
 package com.example.seaside;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Signup extends AppCompatActivity {
 
     EditText name, email, password, confirm;
-    Button submit;
+    Button submit, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class Signup extends AppCompatActivity {
         email = (EditText) findViewById(R.id.signupEmail);
         password = (EditText) findViewById(R.id.signupPassword);
         confirm = (EditText) findViewById(R.id.signupConfirmPassword);
+        back = (Button) findViewById(R.id.button4);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,12 @@ public class Signup extends AppCompatActivity {
                         Toast.makeText(Signup.this, "Success", Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Signup.this, MainActivity.class));
             }
         });
     }
