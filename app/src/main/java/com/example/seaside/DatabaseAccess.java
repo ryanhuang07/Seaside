@@ -153,14 +153,24 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
+        java.util.ArrayList<Integer> ids = new java.util.ArrayList<Integer>();
+
         Cursor events;
         try {
             events = db.rawQuery("SELECT id FROM events", null, null);
         } catch (Exception e) {
-            events = null;
+            ids.add(-1);
+            db.close();
+            return ids;
         }
 
-        java.util.ArrayList<Integer> ids = new java.util.ArrayList<Integer>();
+        if (!events.moveToFirst()) {
+            ids.add(-1);
+            events.close();
+            db.close();
+            return ids;
+        }
+
         do {
             ids.add(events.getInt(0));
         } while (events.moveToNext());
@@ -215,7 +225,7 @@ public class DatabaseAccess extends SQLiteOpenHelper {
             return arguments;
         }
 
-        if (information.moveToFirst() && registered.moveToFirst()) {
+        if (information.moveToFirst() && registered.moveToFirst() && information.getString(0).compareTo("0") != 0) {
             String[] info = {information.getString(0), information.getString(1), information.getString(2), information.getString(3), information.getString(4), Integer.toString(registered.getInt(0))};
             return info;
         }
