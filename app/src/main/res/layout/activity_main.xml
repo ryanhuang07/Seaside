@@ -125,7 +125,7 @@
         android:layout_marginRight="-39dp"
         android:layout_marginBottom="96dp"
         android:layout_toRightOf="@+id/textview"
-        android:text="Cancel"
+        android:text="Sign Up"
         app:iconTint="#000000" />
 
 </RelativeLayout>
