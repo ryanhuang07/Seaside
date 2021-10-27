@@ -56,25 +56,7 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="61dp"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="479dp"
-        android:layout_marginEnd="204dp"
-        android:layout_marginBottom="191dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp" />
+
 
     <EditText
         android:id="@+id/editText1"
@@ -93,6 +75,26 @@
         android:layout_marginRight="94dp"
         android:layout_marginBottom="277dp"
         android:hint="Email"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="479dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="191dp"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp" />
 

@@ -243,7 +243,7 @@ public class DatabaseAccess extends SQLiteOpenHelper {
 
     }
 
-    class EventInfo {
+    public class EventInfo {
 
         String title;
         String description;
@@ -253,5 +253,70 @@ public class DatabaseAccess extends SQLiteOpenHelper {
         int volunteers;
         int registered;
 
+        public EventInfo(String title, String description, String location, String time, String date, int volunteers, int registered) {
+            this.title = title;
+            this.description = description;
+            this.location = location;
+            this.time = time;
+            this.date = date;
+            this.volunteers = volunteers;
+            this.registered = registered;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public int getVolunteers() {
+            return volunteers;
+        }
+
+        public void setVolunteers(int volunteers) {
+            this.volunteers = volunteers;
+        }
+
+        public int getRegistered() {
+            return registered;
+        }
+
+        public void setRegistered(int registered) {
+            this.registered = registered;
+        }
     }
 }

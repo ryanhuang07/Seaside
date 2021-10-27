@@ -24,7 +24,7 @@ public class SecondActivity extends AppCompatActivity {
         Button bAddEvent = (Button)findViewById(R.id.buttonAddEvent);
 
 
-        DatabaseAccess controller = new DatabaseAccess(SecondActivity.this);
+        /*DatabaseAccess controller = new DatabaseAccess(SecondActivity.this);
         ArrayList<Integer> ids = controller.loadEvents();
 
         if (ids.get(0) == -1) {
@@ -53,7 +53,21 @@ public class SecondActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Toast.makeText(SecondActivity.this, "Failed loading events", Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
+
+        ListView mListView = (ListView) findViewById(R.id.listView);
+
+        EventInfo deanSex = new EventInfo("DEan","dean","Male", "haa@gunnypoop");
+        EventInfo deanSex2 = new EventInfo("poop","dean","Male", "hahahehe");
+        EventInfo deanSex3 = new EventInfo("shit","dean","Male", "shitfar");
+
+        ArrayList<EventInfo> eventList = new ArrayList<>();
+        eventList.add(deanSex);
+        eventList.add(deanSex2);
+        eventList.add(deanSex3);
+
+        EventListAdapter adapter = new EventListAdapter(this, R.layout.adapter_view_layout, eventList);
+        mListView.setAdapter(adapter);
 
 
         bAddEvent.setOnClickListener(new View.OnClickListener() {
