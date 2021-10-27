@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DatabaseAccess controller = new DatabaseAccess(MainActivity.this);
+
         Button b1,b2;
         EditText ed1,ed2;
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")) {
+                if(controller.checkLogin(ed1.getText().toString(), ed2.getText().toString())) {
                     Toast.makeText(getApplicationContext(),
                             "Redirecting...",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, SecondActivity.class));

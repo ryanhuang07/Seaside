@@ -113,7 +113,7 @@ public class DatabaseAccess extends SQLiteOpenHelper {
     }
 
     // Checks a user's login, type is either "students" or "admins", returns the user's id or -1 if failed
-    public int checkLogin(String email, String password) {
+    public boolean checkLogin(String email, String password) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -138,13 +138,13 @@ public class DatabaseAccess extends SQLiteOpenHelper {
             if (password.equals(correctPassword.getString(0))) {
                 db.close();
                 correctPassword.close();
-                return correctPassword.getInt(1);
+                return true;
             }
         }
 
         db.close();
         correctPassword.close();
-        return -1;
+        return false;
 
     }
 
