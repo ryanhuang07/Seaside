@@ -15,7 +15,6 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.second_activity);
 
         Button bAddEvent = (Button)findViewById(R.id.buttonAddEvent);
-        TextView test = (TextView)findViewById(R.id.test);
 
         bAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,13 +22,5 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(new Intent(SecondActivity.this, AddEvent.class));
             }
         });
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Poopy",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
-
 }
