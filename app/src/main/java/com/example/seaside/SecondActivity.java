@@ -69,7 +69,6 @@ public class SecondActivity extends AppCompatActivity {
         EventListAdapter adapter = new EventListAdapter(this, R.layout.adapter_view_layout, eventList);
         mListView.setAdapter(adapter);
 
-
         bAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
