@@ -12,4 +12,10 @@
     <style name="Theme.Seaside.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Seaside.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Seaside.CustomTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

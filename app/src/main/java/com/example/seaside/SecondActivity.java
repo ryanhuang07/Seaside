@@ -69,6 +69,13 @@ public class SecondActivity extends AppCompatActivity {
         EventListAdapter adapter = new EventListAdapter(this, R.layout.adapter_view_layout, eventList);
         mListView.setAdapter(adapter);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(SecondActivity.this, PopupWindow.class));
+            }
+        });
+
         bAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
