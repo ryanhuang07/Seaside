@@ -8,6 +8,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.lang.Object;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -56,15 +57,19 @@ public class SecondActivity extends AppCompatActivity {
         }*/
 
         ListView mListView = (ListView) findViewById(R.id.listView);
+        ArrayList<com.example.seaside.EventInfo> eventList = new ArrayList<>();
 
-        EventInfo deanSex = new EventInfo("DEan","dean","Male", "haa@gunnypoop");
-        EventInfo deanSex2 = new EventInfo("poop","dean","Male", "hahahehe");
-        EventInfo deanSex3 = new EventInfo("shit","dean","Male", "shitfar");
+        EventInfo event0 = new EventInfo("Event 1", "This is an event.", "1 Address Ln", "3:20 on 6/9");
+        EventInfo event1 = new EventInfo("Event 2", "This is an event.", "1 Address Ln", "4:20 on 6/9");
+        EventInfo event2 = new EventInfo("Event 3", "This is an event.", "1 Address Ln", "5:20 on 6/9");
+        EventInfo event3 = new EventInfo("Event 4", "This is an event.", "1 Address Ln", "6:20 on 6/9");
+        EventInfo event4 = new EventInfo("Event 5", "This is an event.", "1 Address Ln", "7:20 on 6/9");
 
-        ArrayList<EventInfo> eventList = new ArrayList<>();
-        eventList.add(deanSex);
-        eventList.add(deanSex2);
-        eventList.add(deanSex3);
+        eventList.add(event4);
+        eventList.add(event3);
+        eventList.add(event2);
+        eventList.add(event1);
+        eventList.add(event0);
 
         EventListAdapter adapter = new EventListAdapter(this, R.layout.adapter_view_layout, eventList);
         mListView.setAdapter(adapter);
