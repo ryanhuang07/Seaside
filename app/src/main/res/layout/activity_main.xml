@@ -91,6 +91,18 @@
         android:textSize="20sp" />
 
     <Button
+        android:id="@+id/button"
+        android:layout_width="145dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginRight="-238dp"
+        android:layout_marginBottom="63dp"
+        android:fontFamily="@font/montserrat"
+        android:text="login" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="145dp"
         android:layout_height="75dp"
@@ -103,16 +115,6 @@
         android:text="Sign Up"
         app:iconTint="#000000" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="145dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginRight="-238dp"
-        android:layout_marginBottom="63dp"
-        android:fontFamily="@font/montserrat"
-        android:text="login" />
+
 
 </RelativeLayout>
