@@ -15,13 +15,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventListAdapter extends ArrayAdapter<EventInfo>{
+public class EventListAdapter extends ArrayAdapter<com.example.seaside.EventInfo>{
 
     private Context mContext;
     private int mResource;
 
 
-    public EventListAdapter(Context context, int resource, ArrayList<EventInfo> objects) {
+    public EventListAdapter(Context context, int resource, ArrayList<com.example.seaside.EventInfo> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
