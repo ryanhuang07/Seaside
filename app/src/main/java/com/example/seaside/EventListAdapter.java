@@ -34,6 +34,7 @@ public class EventListAdapter extends ArrayAdapter<com.example.seaside.EventInfo
         String description = getItem(position).getDescription();
         String location = getItem(position).getLocation();
         String time = getItem(position).getTime();
+        String volunteers = getItem(position).getVolunteers();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -42,11 +43,13 @@ public class EventListAdapter extends ArrayAdapter<com.example.seaside.EventInfo
         TextView tvDescription = (TextView) convertView.findViewById(R.id.textView2);
         TextView tvLocation = (TextView) convertView.findViewById(R.id.textView3);
         TextView tvTime = (TextView) convertView.findViewById(R.id.textView4);
+        TextView tvVolunteers = (TextView) convertView.findViewById(R.id.textView);
 
         tvTitle.setText(title);
         tvDescription.setText(description);
         tvLocation.setText(location);
         tvTime.setText(time);
+        tvVolunteers.setText(volunteers);
 
         return convertView;
     }

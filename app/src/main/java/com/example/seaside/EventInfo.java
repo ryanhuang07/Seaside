@@ -5,12 +5,14 @@ public class EventInfo {
     private String description;
     private String location;
     private String time;
+    private String volunteers;
 
-    public EventInfo(String title, String description, String location, String time) {
+    public EventInfo(String title, String description, String location, String time, String volunteers) {
         this.title = title;
         this.description = description;
         this.location = location;
         this.time = time;
+        this.volunteers = volunteers;
     }
 
     public String getTitle() {
@@ -43,6 +45,14 @@ public class EventInfo {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getVolunteers() {
+        return volunteers;
+    }
+
+    public void setVolunteers(String volunteers) {
+        this.volunteers = volunteers;
     }
 
 

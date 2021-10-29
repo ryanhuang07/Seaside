@@ -59,11 +59,11 @@ public class SecondActivity extends AppCompatActivity {
         ListView mListView = (ListView) findViewById(R.id.listView);
         ArrayList<com.example.seaside.EventInfo> eventList = new ArrayList<>();
 
-        EventInfo event0 = new EventInfo("Event 1", "This is an event.", "1 Address Ln", "3:20 on 6/9");
-        EventInfo event1 = new EventInfo("Event 2", "This is an event.", "1 Address Ln", "4:20 on 6/9");
-        EventInfo event2 = new EventInfo("Event 3", "This is an event.", "1 Address Ln", "5:20 on 6/9");
-        EventInfo event3 = new EventInfo("Event 4", "This is an event.", "1 Address Ln", "6:20 on 6/9");
-        EventInfo event4 = new EventInfo("Event 5", "This is an event.", "1 Address Ln", "7:20 on 6/9");
+        EventInfo event0 = new EventInfo("Event 1", "This is an event.", "1 Address Ln", "3:20 on 6/9", "24562");
+        EventInfo event1 = new EventInfo("Event 2", "This is an event.", "1 Address Ln", "4:20 on 6/9", "0");
+        EventInfo event2 = new EventInfo("Event 3", "This is an event.", "1 Address Ln", "5:20 on 6/9", "45798312");
+        EventInfo event3 = new EventInfo("Event 4", "This is an event.", "1 Address Ln", "6:20 on 6/9", "1.5");
+        EventInfo event4 = new EventInfo("Event 5", "This is an event.", "1 Address Ln", "7:20 on 6/9", "-3");
 
         eventList.add(event4);
         eventList.add(event3);
