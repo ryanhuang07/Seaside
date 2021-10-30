@@ -44,7 +44,7 @@ public class AddEvent extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddEvent.this, SecondActivity.class));
+                startActivity(new Intent(AddEvent.this, ThirdActivity.class));
             }
         });
 

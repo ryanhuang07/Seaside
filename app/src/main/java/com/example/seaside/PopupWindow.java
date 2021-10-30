@@ -21,7 +21,7 @@ public class PopupWindow extends AppCompatActivity{
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        Button register = (Button) findViewById(R.id.button5);
+        Button register = (Button) findViewById(R.id.registerButton);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
