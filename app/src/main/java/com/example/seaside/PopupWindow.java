@@ -2,6 +2,9 @@ package com.example.seaside;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,15 @@ public class PopupWindow extends AppCompatActivity{
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
+
+        Button register = (Button) findViewById(R.id.button5);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PopupWindow.this, "Registered!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         getWindow().setLayout((int) (width*.6), (int) (height*.2));
 
