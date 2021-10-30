@@ -23,7 +23,7 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        Button bAddEvent = (Button)findViewById(R.id.buttonAddEvent);
+        //Button bAddEvent = (Button)findViewById(R.id.buttonAddEvent);
 
         ListView mListView = (ListView) findViewById(R.id.listView);
         ArrayList<com.example.seaside.EventInfo> eventList = new ArrayList<>();
@@ -52,12 +52,12 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
 
-        bAddEvent.setOnClickListener(new View.OnClickListener() {
+        /*bAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ThirdActivity.this, AddEvent.class));
             }
-        });
+        });*/
 
     }
 }
